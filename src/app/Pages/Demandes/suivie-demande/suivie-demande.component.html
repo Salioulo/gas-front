@@ -1,0 +1,33 @@
+<div>
+  <div class="container mt-5">
+    <h4>SUIVIE DEMANDE</h4>
+    <hr>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Date demande</th>
+          <th scope="col">Universite</th>
+          <th scope="col">Etablissement</th>
+          <th scope="col">Spécialite</th>
+          <th scope="col">Niveau</th>
+          <th scope="col">Statut</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let demande of demandes">
+          <td>{{demande.created_at}}</td>
+          <td>{{demande.codeUniv}}</td>
+          <td>{{demande.codeEtab}}</td>
+          <td>{{demande.libelleSpec}}</td>
+          <td>{{demande.libelleNiv}}</td>
+          <td>{{demande.statut}}</td>
+          <td>
+            <a routerLink="/demande/{{demande.id}}/details" class="btn btn-info">Détail</a>&nbsp;
+            <button class="btn btn-primary">Completer</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  </div>

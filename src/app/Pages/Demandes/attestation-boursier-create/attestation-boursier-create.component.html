@@ -1,0 +1,80 @@
+<div>
+  <div class="container mt-3">
+    <div class="card">
+      <div class="card-header">
+        <h4>Faire une nouvelle demande</h4>
+        <a routerLink="/" class="btn btn-danger float-end">Retour</a>
+      </div>
+      <div class="card-body">
+        <form class="row g-3" [formGroup]="formDem" (ngSubmit)="saveDemande()">
+
+          <div class="col-md-6">
+            <label class="form-label">Exercice</label>
+            <select class="form-select" [(ngModel)]="exercice" name="exercice" formControlName="exercice">
+              <option selected>Choisir Année</option>
+              <option *ngFor="let exercice of  this.exercices" value="{{exercice.id}}">{{exercice.libelleExer}}</option>
+            </select>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label">Pays</label>
+            <select class="form-select" [(ngModel)]="paysdem" name="paysdem" formControlName="paysdem">
+              <option selected>Choisir le pays</option>
+              <option *ngFor="let pay of  this.pays" value="{{pay.id}}">{{pay.libellePays}}</option>
+            </select>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label">Type Demande</label>
+            <select (change)="onSelectTypeDem($event)" class="form-select" [(ngModel)]="typedemande" name="typedemande" formControlName="typedemande">
+              <option *ngFor="let typedemande of  this.typedemandes" value="{{typedemande.id}}">{{typedemande.libelleType}}</option>
+            </select>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Niveau d'étude</label>
+            <select class="form-select" [(ngModel)]="niveau" name="niveau" formControlName="niveau">
+              <option selected>Choisir Niveau</option>
+              <option *ngFor="let niveau of  this.niveaux" value="{{niveau.id}}">{{niveau.libelleNiv}}</option>
+            </select>
+          </div>
+
+          <div class="col-md-12">
+            <label class="form-label">Université</label>
+            <select (change)="onSelectEtabByUniv($event)" class="form-select" [(ngModel)]="universite" name="universite" formControlName="universite">
+              <option selected>Choisir Université</option>
+              <option *ngFor="let universite of  this.universites" value="{{universite.id}}">{{universite.libelleUniv}}</option>
+            </select>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label">Etablissement</label>
+            <select (change)="onSelectSpeByEtab($event)" class="form-select" [(ngModel)]="etablissement" name="etablissement" formControlName="etablissement">
+              <option selected>Choisir Etablissement</option>
+              <option *ngFor="let etablissement of  this.etablisByUniv" value="{{etablissement.id}}">{{etablissement.libelleEtab}}</option>
+            </select>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label">Specialité</label>
+            <select class="form-select" [(ngModel)]="specialite" name="specialite" formControlName="specialite">
+              <option selected>Choisir Specialité</option>
+              <option *ngFor="let specialite of  this.specialitesByEtab" value="{{specialite.id}}">{{specialite.libelleSpec}}</option>
+            </select>
+          </div>
+            <hr>
+
+            <div class="col-md-4" *ngFor="let file of this.typeFiles">
+                <label class="form-label">{{file}}</label>
+                <input class="form-control form-control-sm" id="formFileSm" type="file">
+            </div>
+
+          <div class="mb-3">
+            <button type="submit" class="btn btn-primary" [disabled] = "!formDem.valid">Save</button>
+            <span class="text-danger" *ngIf="!formDem.valid">  (Tous les champs sont obligatoires)</span>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
