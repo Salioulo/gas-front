@@ -6,7 +6,7 @@
         <a routerLink="/" class="btn btn-danger float-end">Retour</a>
       </div>
       <div class="card-body">
-        <form class="row g-3" [formGroup]="formDem" (ngSubmit)="saveDemande()">
+        <form class="row g-3" [formGroup]="formDem" (ngSubmit)="saveDemande()" enctype="multipart/form-data">
 
           <div class="col-md-6">
             <label class="form-label">Exercice</label>
@@ -65,7 +65,7 @@
 
             <div class="col-md-4" *ngFor="let file of this.typeFiles">
                 <label class="form-label">{{file}}</label>
-                <input class="form-control form-control-sm" id="formFileSm" type="file">
+                <input class="form-control form-control-sm" id="files" type="file" (change)="uploadFiles($event)" formControlName="files" multiple>
             </div>
 
           <div class="mb-3">

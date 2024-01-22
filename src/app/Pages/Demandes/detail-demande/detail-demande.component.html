@@ -46,6 +46,7 @@
               <th scope="col">Statut</th>
               <th scope="col">Type</th>
               <th scope="col">Pays</th>
+              <th scope="col">Année</th>
             </tr>
           </thead>
           <tbody>
@@ -54,6 +55,7 @@
               <td>{{details.statut}}</td>
               <td>{{details.libelleType}}</td>
               <td>{{details.libellePays}}</td>
+              <td>{{details.libelleExer}}</td>
             </tr>
           </tbody>
         </table>
@@ -72,8 +74,8 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>{{details.nomDoc}}</td>
+            <tr *ngFor="let doc of documents">
+              <td>{{doc.nomDoc}}</td>
               <td>
                 <a routerLink="" class="btn btn-info">Voir</a>&nbsp;
                 <button class="btn btn-danger">Supprimer</button>

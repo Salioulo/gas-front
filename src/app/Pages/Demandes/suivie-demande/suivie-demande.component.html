@@ -10,7 +10,8 @@
           <th scope="col">Etablissement</th>
           <th scope="col">Spécialite</th>
           <th scope="col">Niveau</th>
-          <th scope="col">Statut</th>
+          <th scope="col">Niveau</th>
+          <th scope="col">Année</th>
           <th scope="col">Actions</th>
         </tr>
       </thead>
@@ -21,6 +22,7 @@
           <td>{{demande.codeEtab}}</td>
           <td>{{demande.libelleSpec}}</td>
           <td>{{demande.libelleNiv}}</td>
+          <td>{{demande.libelleExer}}</td>
           <td>{{demande.statut}}</td>
           <td>
             <a routerLink="/demande/{{demande.id}}/details" class="btn btn-info">Détail</a>&nbsp;

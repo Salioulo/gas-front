@@ -10,6 +10,7 @@ import { DemandeService } from 'src/app/Services/demande.service';
 export class DetailDemandeComponent {
 
   details: any
+  documents: any
   demandeId: any
 
   constructor(private demandeService: DemandeService, private route: ActivatedRoute){}
@@ -24,6 +25,7 @@ export class DetailDemandeComponent {
   getDetailsList(){
     this.demandeService.getDetailsDemande(this.demandeId).subscribe((res: any) => {
       this.details = res.message
+      this.documents = res.docs
       console.log(this.details)
     })
   }

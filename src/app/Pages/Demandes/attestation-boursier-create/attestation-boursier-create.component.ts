@@ -11,23 +11,23 @@ import { DemandeService, TydemandeTResponse, ExerciceResponse, PaysResponse, Uni
 })
 export class AttestationBoursierCreateComponent {
   formDem!: FormGroup;
-  typeFiles: any [] = [];
+  typeFiles: any [] = []; //nbr input file
+  myFiles: any = [];
+  files: any [] = [];
 
-  exercice!: number
-  paysdem!: number
-  typedemande!: number
-  universite!: number
-  etablissement!: number
-  specialite!: number
-  niveau!: number
-  user = 2
+  exercice!: any
+  paysdem!: any
+  typedemande!: any
+  universite!: any
+  etablissement!: any
+  specialite!: any
+  niveau!: any
+  user: any = 1
 
   univId: any
   specialiteId: any
   etablisByUniv!: any
   specialitesByEtab!: any
-
-  //errors: any = [];
 
   constructor(private demandeService: DemandeService, private formBuilder: FormBuilder, private route: ActivatedRoute){
     this.formDem = this.formBuilder.group({
@@ -37,7 +37,8 @@ export class AttestationBoursierCreateComponent {
       universite: ['', Validators.required],
       etablissement: ['', Validators.required],
       specialite: ['', Validators.required],
-      niveau: ['', Validators.required]
+      niveau: ['', Validators.required],
+      files: ['', Validators.required]
 
     });
   }
@@ -116,9 +117,17 @@ export class AttestationBoursierCreateComponent {
     })
   }
 
+  uploadFiles(event: any){
+    for (var i = 0; i < event.target.files.length; i++){
+      this.files.push(event.target.files[i]);
+    }
+
+  }
+
   saveDemande() {
+
     if(this.formDem.valid) {
-      var inputData = {
+     /*var inputData = {
         exercice: this.exercice,
         paysdem: this.paysdem,
         typedemande: this.typedemande,
@@ -127,11 +136,30 @@ export class AttestationBoursierCreateComponent {
         specialite: this.specialite,
         niveau: this.niveau,
         user: this.user,
+        files: this.files
+      }*/
+
+      const inputData = new FormData();
+      inputData.append('exercice', this.exercice);
+      inputData.append('paysdem', this.paysdem);
+      inputData.append('typedemande', this.typedemande);
+      inputData.append('universite', this.universite);
+      inputData.append('etablissement', this.etablissement);
+      inputData.append('specialite', this.specialite);
+      inputData.append('niveau', this.niveau);
+      inputData.append('user', this.user);
+
+      for(var i =  0; i < this.files.length; i++)
+       {
+        inputData.append('files[]', this.files[i]);
+        console.log(this.files[i])
       }
+
       console.log(inputData)
+      //console.log(this.files)
       this.demandeService.saveDemande(inputData).subscribe({
         next: (res: any) => {
-          console.log(res.message, 'response');
+          console.log(res, 'response');
         },
         error: (err: any) => {
           //this.errors = err.error.errors;
