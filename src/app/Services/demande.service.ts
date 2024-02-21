@@ -112,4 +112,8 @@ export class DemandeService {
     return this.httpClient.get('http://localhost:8000/api/demande/'+ idDem + '/details');
   }
 
+  downloadFile(nomFile: any){
+    return this.httpClient.get('http://localhost:8000/api/fichier/'+ nomFile + '/download');
+  }
+
 }

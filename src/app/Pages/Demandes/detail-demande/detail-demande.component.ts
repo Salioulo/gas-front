@@ -1,3 +1,4 @@
+import { HttpResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DemandeService } from 'src/app/Services/demande.service';
@@ -9,14 +10,16 @@ import { DemandeService } from 'src/app/Services/demande.service';
 })
 export class DetailDemandeComponent {
 
+  constructor(private demandeService: DemandeService, private route: ActivatedRoute){}
   details: any
   documents: any
   demandeId: any
-
-  constructor(private demandeService: DemandeService, private route: ActivatedRoute){}
+  fileId: any
+  fileName = '';
 
   ngOnInit(){
     this.demandeId = this.route.snapshot.paramMap.get('id');
+    //this.fileId = this.route.snapshot.paramMap.get('idFile');
     //alert(this.demandeId);
     this.getDetailsList();
 
@@ -26,8 +29,17 @@ export class DetailDemandeComponent {
     this.demandeService.getDetailsDemande(this.demandeId).subscribe((res: any) => {
       this.details = res.message
       this.documents = res.docs
-      console.log(this.details)
+      //console.log(this.details)
+      //console.log(this.documents)
     })
+  }
+  downloadMyFile(nomFile: any){
+    console.log(nomFile)
+    this.demandeService.downloadFile(nomFile).subscribe((res: any) => {
+      console.log(res)
+
+    })
+
   }
 
 }

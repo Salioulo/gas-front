@@ -160,10 +160,21 @@ export class AttestationBoursierCreateComponent {
       this.demandeService.saveDemande(inputData).subscribe({
         next: (res: any) => {
           console.log(res, 'response');
+          alert(res.message);
+          this.exercice = '';
+          this.paysdem = '';
+          this.typedemande = '';
+          this.universite = '';
+          this.etablissement = '';
+          this.specialite = '';
+          this.niveau = '';
+          this.files = [];
         },
         error: (err: any) => {
           //this.errors = err.error.errors;
           console.log(err);
+          alert(err.error.errors.files);
+
         }
       })
 

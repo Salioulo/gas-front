@@ -16,6 +16,7 @@ import { AttestationBoursierCreateComponent } from './Pages/Demandes/attestation
 import { AttestationNonBoursierCreateComponent } from './Pages/Demandes/attestation-non-boursier-create/attestation-non-boursier-create.component';
 import { SuivieDemandeComponent } from './Pages/Demandes/suivie-demande/suivie-demande.component';
 import { DetailDemandeComponent } from './Pages/Demandes/detail-demande/detail-demande.component';
+import { LoginComponent } from './Pages/login/login.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { DetailDemandeComponent } from './Pages/Demandes/detail-demande/detail-d
     AttestationBoursierCreateComponent,
     AttestationNonBoursierCreateComponent,
     SuivieDemandeComponent,
-    DetailDemandeComponent
+    DetailDemandeComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
